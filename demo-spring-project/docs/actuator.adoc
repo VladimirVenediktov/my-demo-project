@@ -1,0 +1,20 @@
+Spring Boot Actuator предоставляет множество готовых конечных точек (endpoint),
+которые могут быть полезны для мониторинга приложения:
+
+. http://localhost:8888/actuator/health
+. http://localhost:8888/actuator/metrics
+. http://localhost:8888/actuator/prometheus
+. http://localhost:8888/actuator/beans
+. http://localhost:8888/actuator/mappings (список всех путей @RequestMapping)
+. http://localhost:8888/actuator/threaddump
+. tp://localhost:8888/actuator/heapdump
+. http://localhost:8888/actuator/shutdown и др.
+
+По дефолту включены только /info и /health
+
+Включить доступ через http:
+management.endpoints.web.exposure.include=* (вкл. все)
+(либо только с необходимыми параметрами management.endpoints.web.exposure.include= health, info, beans, loggers)
+
+Есть возможности кастомизации: добавление информации в имеющиеся endpoint'ы,
+создание собственных (src/main/java/ru/venediktov/testspringproject/actuator/FeatureCustomEndpoint.java).
