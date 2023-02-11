@@ -1,6 +1,5 @@
 package ru.venediktov.testspringproject.config;
 
-import java.util.List;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -13,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -53,7 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   // другой вариант аутентификации
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(customUserDetailsService);
+    auth.userDetailsService(customUserDetailsService); // используется в DaoAuthenticationProvider (по умолчанию)
+    // либо можно реализовать свой AuthenticationProvider и сделать auth.authenticationProvider()
   }
 
   @Bean

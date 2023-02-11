@@ -1,0 +1,14 @@
+Spring security
+Приходящий http-запрос перед тем, как попасть в контроллер проходит цепочку фильтров,
+из него вытаскиваются логин/пароль (в Складе - токен) и формируется объект Authentication (логин в principal,
+пароль в credentials).
+Далее нужно сравнить их с реальными (в БД/внешней системе и т.п), AuthenticationManager (его реализация ProviderManager)
+делегирует это провайдерам AuthenticationProvider, который использует UserDetailsService для извлечения UserDetails:
+имплементируя WebSecurityConfigurerAdapter мы переопределяем configure(AuthenticationManagerBuilder auth),
+где и можем указать провайдер (или даже сразу userDetailsService).
+И провайдер и userDetailsService получают реально существующий логин/пароль, а вот сравнение с пришедшими на проверку
+делает только провайдер - формируется объект Authentication, где реальный пользователь лежит в Principal в виде UserDetails
+(либо выбрасывается исключение).
+
+Допустим, аутентификация прошла успешно — это значит, имя и пароль верные.
+Тогда объект Authentication сохраняется в SecurityContext, а тот, в свою очередь, — в SecurityContextHolder
