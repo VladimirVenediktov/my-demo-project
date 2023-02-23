@@ -1,0 +1,33 @@
+spring-boot-starter-test (JUnit/Mockito/библ-ки утверждений)
+
+=== Spring security test
+Для реализации тестов защищенного авторизацией функционала можно использовать зависимость
+spring-security-test (для аннотации @WithMockUser и пр.)
+
+*Простейший случай:* @SpringBootTest и @Autowired-поле нашего сервиса, имеющего @Secured/@PreAuthorize методы,
+чтобы проходила проверка авторизации надо указать @WithMockUser(username="test-user"),
+иначе - @Test(expected = AuthenticationCredentialsNotFoundException.class).
+
+*Для тестов контроллера:*
+@WebMvcTest(SecuredController.class) - при использовании аннотации @WebMvcTest из Spring Security
+MockMvc автоматически настраивается с необходимой цепочкой фильтров, необходимой для проверки нашей конфигурации безопасности
+используем зависимость
+@Autowired
+private MockMvc mvc
+и
+@WithMockUser(value = "spring") над тестом
+
+=== Spring cloud stream test
+. зависимость spring-cloud-stream-test-support:
+специальный TestSupportBinder позволяет взаимодействовать с привязанными каналами и проверять,
+какие сообщения отправляются и/или принимаются приложением.
+Для *исходящих каналов* TestSupportBinder регистрирует одного подписчика и сохраняет сообщения, отправленные приложением,
+в файле MessageCollector. Они могут быть извлечены во время тестов, и для них могут быть сделаны assertions.
+Для *входящих* сообщений можно отправить сообщение прямо в input-канал:
+sink.input().send(MessageBuilder.withPayload(new LogMessage("This is my message")).build());
+И далее уже проверить логику, которая заложена в слушателе (например, Mockito.verify())
++
+или
+. @Import(TestChannelBinderConfiguration.class):
+Spring boot автоматически предоставляет как InputDestination, так и OutputDestination, которые можно использовать
+совместно с нашими издателями и подписчиками для проверки опубликованных/полученных сообщений.
