@@ -2,6 +2,7 @@ package ru.venediktov.testspringproject.config;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Sink;
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
 @EnableBinding({Source.class, Sink.class})
 @EnableScheduling
 @Configuration
+@ConditionalOnProperty("spring.cloud.stream.old.style.enabled")
 @RequiredArgsConstructor
 public class RabbitConfig {
 
