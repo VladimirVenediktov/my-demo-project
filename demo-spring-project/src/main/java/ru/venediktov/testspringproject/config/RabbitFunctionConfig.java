@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 @Slf4j
 @Configuration
@@ -16,5 +17,10 @@ public class RabbitFunctionConfig {
     @Bean
     public Consumer<String> log() {
         return str -> log.info("Received: {}", str);
+    }
+
+    @Bean
+    public Supplier<String> push() {
+        return () -> "Pushed message";
     }
 }
