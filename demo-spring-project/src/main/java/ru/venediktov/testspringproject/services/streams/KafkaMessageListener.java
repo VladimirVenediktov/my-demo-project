@@ -2,12 +2,9 @@ package ru.venediktov.testspringproject.services.streams;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.core.KafkaAdmin;
 import org.springframework.stereotype.Service;
 
-@ConditionalOnBean(KafkaAdmin.class)
 @Service
 @Slf4j
 public class KafkaMessageListener {

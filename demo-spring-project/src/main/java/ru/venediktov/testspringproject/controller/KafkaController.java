@@ -1,19 +1,17 @@
 package ru.venediktov.testspringproject.controller;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.http.HttpStatus;
-import org.springframework.kafka.core.KafkaAdmin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.venediktov.testspringproject.services.streams.KafkaProducer;
 
-@ConditionalOnBean(KafkaAdmin.class)
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 @RestController
 @RequestMapping("/api/kafka")
 @RequiredArgsConstructor
