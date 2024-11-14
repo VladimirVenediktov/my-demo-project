@@ -10,13 +10,13 @@ site (генерации проектной документации)
 
 для default-цикла
 
-. validate
+. validate (проверяет, что проект корректен и вся необходимая информация для сборки доступна. На этой фазе Maven проверяет структуру проекта и его конфигурацию, чтобы убедиться, что все необходимые файлы и зависимости присутствуют и корректны)
 . compile
 . test
-. package
+. package (упаковка в jar/war)
 . verify
-. install
-. deploy
+. install (в локальный репо)
+. deploy (в удаленный репо)
 
 Плагины привязаны к фазе и выполняют на ней свои цели.
 Цель - это действие, которое плагин может выполнить. Целей может быть несколько.
@@ -26,16 +26,16 @@ site (генерации проектной документации)
 . maven-compiler-plugin - компиляция проекта
 . maven-resources-plugin - плагин копирования ресурсов (перед сборкой все ресурсы - файлы изображений,
 .properties - скопировать в директорию target)
-. maven-surefire-plugin - для запуска тестов и генерации отчетов по результатам их выполнения
+. maven-surefire-plugin - для запуска unit-тестов и генерации отчетов по результатам их выполнения
 . spring-boot-maven-plugin - упаковка в исполняемый jar/war (repackage-цель), запуск spring-boot приложения и др.
-. asciidoctor-maven-plugin - плагин конвертации ascii-документации в html/pdf и пр.
+. asciidoctor-maven-plugin - плагин конвертации ascii-документации в html/pdf и пр. (пример в pom demo-spring-project)
 . swagger-maven-plugin - для генерации json-спецификации проекта
-. springdoc-openapi-maven-plugin - для генерации YAML-спецификации при сборке проекта
-. maven-dependency-plugin - поиск дублирующихся зависимостей (tree/analyze-duplicate)
+. springdoc-openapi-maven-plugin - для генерации YAML-спецификации при сборке проекта (open-api async-api)
+. maven-dependency-plugin - поиск дублирующихся, транзитивных зависимостей (tree/analyze-duplicate)
 . maven-enforcer-plugin - запрет сборки при дублировании зависимостей
 
 == maven java api
-MOJO API (именование по аналогии с POJO "plain old java object")
+MOJO API (именование по аналогии с POJO "plain old java object", только в MOJO "M" - Maven)
 MOJO API позволяет создавать кастомные maven-плагины, где mojo - определенным образом
 аннотированный java-класс (@Mojo), реализующий интерфейс AbstractMojo (метод execute())
 и тем самым представляющий в итоге цель плагина.

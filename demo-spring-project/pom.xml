@@ -124,6 +124,29 @@
           </excludes>
         </configuration>
       </plugin>
+        <plugin>
+            <groupId>org.asciidoctor</groupId>
+            <artifactId>asciidoctor-maven-plugin</artifactId>
+            <version>2.2.1</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>process-asciidoc</goal>
+                </goals>
+                <phase>prepare-package</phase>
+              </execution>
+            </executions>
+            <configuration>
+              <backend>html</backend>
+              <sourceDirectory>${project.basedir}/docs</sourceDirectory>
+              <outputDirectory>${project.build.directory}/generated-docs</outputDirectory>
+            </configuration>
+        </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.8.1</version>
+      </plugin>
     </plugins>
   </build>
 
