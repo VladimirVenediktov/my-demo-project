@@ -20,7 +20,6 @@
     </properties>
 
     <modules>
-        <module>demo-spring-starter</module>
         <module>demo-spring-project</module>
     </modules>
 

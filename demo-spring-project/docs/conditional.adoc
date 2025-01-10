@@ -7,3 +7,22 @@
 . @ConditionalOnBean (если присутствует нужный бин в BeanFactory)
 . @ConditionalOnClass (если нужный класс есть в classpath)
 . ConditionalOnMissingBean (если нужный бин отсутствует в BeanFactory)
+
+Если указать:
+debug=true в application.properties
+(или -Ddebug=true)
+то при старте отчет об автоконфигурации покажет
+positive matches (позитивные соответствия условиям @ConditionalOn)
+negative matches (негативные соответствия условиям @ConditionalOn)
+unconditionalClasses (бины, которые создаются всегда): пример ConfigurationPropertiesAutoConfiguration
+
+Environment - абстракция окружения Spring, хранилище для любых настраиваемых свойств.
+Окружение Spring поддер- живает несколько источников свойств, в том числе:
+системные свойства JVM;
+переменные окружения операционной системы;
+аргументы командной строки;
+файлы конфигурационных свойств приложения
+
+EnvironmentPostProcessor - интерфейс, который позволяет изменить Environment перед тем, как создается ApplicationContext (для настройки окружения приложения до обновления контекста приложения.)
+Имеет метод postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application)
+В spring.factories нужно указать org.springframework.boot.env.EnvironmentPostProcessor= наша реализация EnvironmentPostProcessor

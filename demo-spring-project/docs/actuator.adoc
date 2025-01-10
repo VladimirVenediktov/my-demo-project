@@ -1,10 +1,15 @@
+зависимость <spring-boot-starter-actuator>
 Spring Boot Actuator предоставляет множество готовых конечных точек (endpoint),
 которые могут быть полезны для мониторинга приложения:
 
 . http://localhost:8888/actuator/health
 . http://localhost:8888/actuator/metrics
 . http://localhost:8888/actuator/prometheus
+. http://localhost:8888/actuator/loggers
 . http://localhost:8888/actuator/beans
+. http://localhost:8888/actuator/conditions (аналогично отчету debug = true при старте)
+. http://localhost:8888/actuator/configprops (все доступные св-ва из Environment)
+. http://localhost:8888/actuator/env (различные св-ва с указанием источника)
 . http://localhost:8888/actuator/mappings (список всех путей @RequestMapping)
 . http://localhost:8888/actuator/threaddump
 . tp://localhost:8888/actuator/heapdump
