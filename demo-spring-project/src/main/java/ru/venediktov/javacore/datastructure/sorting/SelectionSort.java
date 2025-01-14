@@ -1,5 +1,7 @@
 package ru.venediktov.javacore.datastructure.sorting;
 
+import java.util.Arrays;
+
 /**
  * Сортировка выбором, O(n^2).
  */
@@ -7,9 +9,9 @@ public class SelectionSort {
 
   public static void main(String[] args) {
     int[] array = {5, 2, 4, 0, 3, 7, 1, 8, -2, 6};
-    System.out.println("Исходный массив: " + Utils.arrayToString(array));
+    System.out.println("Исходный массив: " + Arrays.toString(array));
     selectionSort(array);
-    System.out.println("Отсортированный массив: " + Utils.arrayToString(array));
+    System.out.println("Отсортированный массив: " + Arrays.toString(array));
   }
 
   private static int[] selectionSort(int[] array) {
