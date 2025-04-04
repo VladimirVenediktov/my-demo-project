@@ -1,0 +1,19 @@
+== Unmodifiable коллекции
+создаются с помощью Collections.unmodifiableXXX() и получается обертка над
+обычной изменяемой коллекцией:
+[source,java]
+----
+Map<String, String> modifiableMap = new HashMap<>();
+modifiableMap.put("name1", "Michael");
+modifiableMap.put("name2", "Harry");
+Map<String, String> unmodifiableMap = Collections.unmodifiableMap(modifiableMap);
+----
+Эта неизменяемая ссылка является особенной в том смысле, что мы не можем использовать ее для добавления или удаления записей в Map. Но она не влияет на базовую modifiableMap или другую изменяемую переменную Map. Мы все еще можем добавить новые ключ-значение в коллекцию, используя исходную изменяемую ссылку на Map (modifiableMap).
+
+ Попытка изменить unmodifiableMap приведет к UnsupportedOperationException
+
+== Immutable коллекции
+Создать можно через Map.of() или List.of(). После создания не изменить.
+Этот вид неизменяемых коллекций решает проблему изменений коллекций через изменяемую ссылку (как в примере выше с unmodifiableMap) - т.е тут такое не пройдет.
+
+ При любой попытке добавить/изменить/удалить элементы будет UnsupportedOperationException.

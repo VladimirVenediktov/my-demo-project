@@ -1,0 +1,26 @@
+== Executors
+Executor и ExecutorService - сервис-исполнитель для более высокоуровневой работы с потоками, чем создание напрямую руками.
+Executors - это фабрика для создания различных типов исполнителей.
+Например, ThreadPoolExecutor как реализация Executor и ExecutorService.
+ThreadPoolExecutor имеет параметры
+
+- corePoolSize - минимальное количество потоков в пуле, созданных при старте и постоянно поддерживаемых
+- maximumPoolSize - максимальное количество потоков в пуле, которое может быть создано при исчерпании всех потоков из corePoolSize
+- keepAliveTime - время, в течение которого неиспользуемые потоки будут оставаться в пуле
+
+Есть разные методы у Executors для создания исполнителей с различными характеристиками:
+
+== newFixedThreadPool(int nThreads)
+Создает пул потоков с фиксированным числом потоков (corePoolSize = maximumPoolSize = nThreads, keepAliveTime = 0)
+
+== newCachedThreadPool()
+Создает пул потоков, который автоматически масштабируется в зависимости от нагрузки (corePoolSize = 0, maximumPoolSize = integer.MAX_VALUE, keepAliveTime = 60 сек).
+
+== newSingleThreadExecutor()
+Создает исполнителя с единственным потоком (corePoolSize = maximumPoolSize = 1, keepAliveTime = 0).
+
+== newScheduledThreadPool(int nThreads)
+Пул запланированных задач (интерфейс ScheduledExecutorService реализует ExecutorService) позволяет запускать задачи с периодичностью или спустя какое-то время (corePoolSize = nThreads, maximumPoolSize = integer.MAX_VALUE, keepAliveTime = 0).
+
+== ThreadPoolTaskExecutor (от Spring)
+реализует Executor, но не ExecutorService

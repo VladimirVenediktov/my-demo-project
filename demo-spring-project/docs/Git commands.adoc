@@ -1,0 +1,5 @@
+== IDEA git control
+- Update project (чек-бокс "Merge incoming changes into ...") == git fetch, git merge
+- Update (на ветке) == git pull (setting -> git -> version control -> update method -> merge/rebase)
+- Fetch == git fetch (загружает изменения, но не сливает с текущей веткой)
+- Pull == git pull == git fetch + git merge
