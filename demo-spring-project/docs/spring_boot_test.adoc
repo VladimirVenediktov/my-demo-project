@@ -31,3 +31,11 @@ sink.input().send(MessageBuilder.withPayload(new LogMessage("This is my message"
 . @Import(TestChannelBinderConfiguration.class):
 Spring boot автоматически предоставляет как InputDestination, так и OutputDestination, которые можно использовать
 совместно с нашими издателями и подписчиками для проверки опубликованных/полученных сообщений.
+
+=== Spring integration test
+[source,java]
+----
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = { ApplicationConfig.class })
+@WebAppConfiguration // Загружает полный веб-контекст приложения (больше, чем @WebMvcTest)
+----
