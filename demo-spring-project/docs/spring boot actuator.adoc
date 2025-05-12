@@ -8,11 +8,14 @@ Spring Boot Actuator предоставляет множество готовы�
 . http://localhost:8888/actuator/loggers
 . http://localhost:8888/actuator/beans
 . http://localhost:8888/actuator/conditions (аналогично отчету debug = true при старте)
-. http://localhost:8888/actuator/configprops (все доступные св-ва из Environment)
+. http://localhost:8888/actuator/configprops (все компоненты @ConfigurationProperties)
 . http://localhost:8888/actuator/env (различные св-ва с указанием источника)
 . http://localhost:8888/actuator/mappings (список всех путей @RequestMapping)
+. http://localhost:8888/actuator/caches (все кэши, которые есть в приложении)
+. http://localhost:8888/actuator/scheduledtasks (информация о шедулерах)
+. http://localhost:8888/actuator/flyway (информация миграциях Flyway)
 . http://localhost:8888/actuator/threaddump
-. tp://localhost:8888/actuator/heapdump
+. http://localhost:8888/actuator/heapdump
 . http://localhost:8888/actuator/shutdown и др.
 
 По дефолту включены только /info и /health
